@@ -5,11 +5,9 @@ function mergeSort(array) {
 
   const halfWayIndex = Math.ceil(array.length / 2);
 
-  const firstHalf = array.slice(0, halfWayIndex);
-  const secondHalf = array.slice(halfWayIndex);
+  const sortedFirstHalf = mergeSort(array.slice(0, halfWayIndex));
+  const sortedSecondHalf = mergeSort(array.slice(halfWayIndex));
 
-  const sortedFirstHalf = mergeSort(firstHalf);
-  const sortedSecondHalf = mergeSort(secondHalf);
   let sortedFullArray = [];
 
   while (sortedFirstHalf.length > 0 || sortedSecondHalf.length > 0) {
@@ -24,11 +22,9 @@ function mergeSort(array) {
     }
 
     if (sortedFirstHalf[0] < sortedSecondHalf[0]) {
-      const nextNumber = sortedFirstHalf.shift();
-      sortedFullArray.push(nextNumber);
+      sortedFullArray.push(sortedFirstHalf.shift());
     } else {
-      const nextNumber = sortedSecondHalf.shift();
-      sortedFullArray.push(nextNumber);
+      sortedFullArray.push(sortedSecondHalf.shift());
     }
   }
 
